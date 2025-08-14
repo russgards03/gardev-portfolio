@@ -11,6 +11,11 @@ import { Badge } from "@/components/ui/badge";
 // TIP: In a fresh Next.js app you can paste this into app/page.tsx and adjust imports.
 // Tailwind CSS is expected. If you don't use shadcn, replace Button/Card/Badge with divs.
 
+export const metadata = {
+  title: 'GarDev',
+  description: 'A showcase of my work and projects',
+};
+
 const projects = [
   {
     title: "CareShift Scheduling System",

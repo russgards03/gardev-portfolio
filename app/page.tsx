@@ -1,102 +1,225 @@
-import Image from "next/image";
+import React from "react";
+import { motion } from "framer-motion";
+import { Github, Linkedin, Mail, ExternalLink, Download, MapPin, Phone, Code2, Briefcase, ChevronRight } from "lucide-react";
 
-export default function Home() {
+// Minimal shadcn/ui usage (assumes shadcn installed in your Next.js project)
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+
+// TIP: In a fresh Next.js app you can paste this into app/page.tsx and adjust imports.
+// Tailwind CSS is expected. If you don't use shadcn, replace Button/Card/Badge with divs.
+
+const projects = [
+  {
+    title: "CareShift Scheduling System",
+    description: "Web & mobile scheduling for regional hospital. Admin assigns weekly nurse shifts; prevents overlaps; leave requests; audit logs.",
+    tags: ["PHP", "MySQL", "FullCalendar", "Flutter"],
+    link: "#",
+    repo: "#",
+  },
+  {
+    title: "PrestaShop Customizations",
+    description: "Modules and theme tweaks for e‑commerce storefronts.",
+    tags: ["PrestaShop", "PHP", "Twig"],
+    link: "#",
+    repo: "#",
+  },
+  {
+    title: "React Components Library",
+    description: "Reusable UI components with Tailwind, shadcn/ui, and Storybook.",
+    tags: ["React", "Tailwind", "shadcn/ui"],
+    link: "#",
+    repo: "#",
+  },
+];
+
+const skills = [
+  "PHP", "Laravel", "JavaScript", "React", "Next.js", "MySQL", "TailwindCSS", "Git/GitHub", "FullCalendar", "Flutter"
+];
+
+const experiences = [
+  {
+    company: "CLMMRH (Regional Hospital)",
+    role: "Developer — CareShift",
+    period: "2024–2025",
+    bullets: [
+      "Built nurse scheduling with 8‑hr shift generator",
+      "Integrated leave requests & audit logs",
+      "PHP/MySQL backend + FullCalendar frontend",
+    ],
+  },
+  {
+    company: "Freelance",
+    role: "PrestaShop Developer",
+    period: "2024–present",
+    bullets: [
+      "Customized themes and modules",
+      "Optimized checkout UX and performance",
+    ],
+  },
+];
+
+const socials = [
+  { name: "GitHub", href: "https://github.com/", icon: Github },
+  { name: "LinkedIn", href: "https://linkedin.com/in/", icon: Linkedin },
+  { name: "Email", href: "mailto:you@example.com", icon: Mail },
+];
+
+export default function PortfolioPage() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900 text-slate-100">
+      {/* Nav */}
+      <header className="sticky top-0 z-40 backdrop-blur border-b border-white/10">
+        <div className="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
+          <a href="#top" className="font-semibold tracking-tight text-lg">Allen Garde</a>
+          <nav className="hidden md:flex items-center gap-6 text-sm text-slate-300">
+            <a className="hover:text-white" href="#projects">Projects</a>
+            <a className="hover:text-white" href="#experience">Experience</a>
+            <a className="hover:text-white" href="#skills">Skills</a>
+            <a className="hover:text-white" href="#contact">Contact</a>
+          </nav>
+          <div className="flex items-center gap-2">
+            <Button asChild variant="secondary" className="rounded-2xl">
+              <a href="#contact"><ChevronRight className="h-4 w-4 mr-1"/>Hire Me</a>
+            </Button>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </header>
+
+      {/* Hero */}
+      <section id="top" className="mx-auto max-w-6xl px-4 pt-14 pb-12">
+        <div className="grid md:grid-cols-2 gap-10 items-center">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1 text-xs text-slate-300">
+              <Code2 className="h-4 w-4"/> Full‑stack inclined to Front‑end
+            </div>
+            <h1 className="mt-4 text-4xl md:text-5xl font-semibold leading-tight">
+              I build clean, reliable web apps
+            </h1>
+            <p className="mt-4 text-slate-300 max-w-prose">
+              BSIT grad (Latin honors). Comfortable with PHP/Laravel + MySQL, and growing fast in React/Next.js. I enjoy turning real-world workflows—like hospital scheduling—into smooth, intuitive UIs.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button asChild className="rounded-2xl">
+                <a href="#projects"><ExternalLink className="h-4 w-4 mr-2"/>View Projects</a>
+              </Button>
+              <Button variant="outline" asChild className="rounded-2xl">
+                <a href="/resume.pdf"><Download className="h-4 w-4 mr-2"/>Download CV</a>
+              </Button>
+            </div>
+            <div className="mt-6 flex items-center gap-4 text-slate-400">
+              <div className="flex items-center gap-2"><MapPin className="h-4 w-4"/>Bacolod City, PH</div>
+              <div className="flex items-center gap-2"><Phone className="h-4 w-4"/>+63 ••• ••• ••••</div>
+            </div>
+            <div className="mt-6 flex gap-3">
+              {socials.map(({ name, href, icon: Icon }) => (
+                <a key={name} href={href} className="inline-flex items-center gap-2 text-slate-300 hover:text-white">
+                  <Icon className="h-5 w-5"/><span className="text-sm">{name}</span>
+                </a>
+              ))}
+            </div>
+          </motion.div>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}>
+            <div className="relative">
+              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-tr from-cyan-500/20 via-emerald-500/10 to-fuchsia-500/20 blur-2xl"/>
+              <Card className="relative rounded-3xl border-white/10">
+                <CardContent className="p-6">
+                  <div className="aspect-video rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 grid place-items-center text-slate-300">
+                    <span className="text-sm">Add a headshot or product shot here</span>
+                  </div>
+                  <div className="mt-4 text-sm text-slate-300">
+                    Currently exploring React + Next.js and polishing UI patterns with Tailwind and shadcn/ui.
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Projects */}
+      <section id="projects" className="mx-auto max-w-6xl px-4 py-12">
+        <div className="flex items-center justify-between">
+          <h2 className="text-2xl font-semibold flex items-center gap-2"><Briefcase className="h-5 w-5"/> Projects</h2>
+          <a className="text-sm text-slate-300 hover:text-white" href="https://github.com/">See all ↗</a>
+        </div>
+        <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((p) => (
+            <Card key={p.title} className="rounded-3xl border-white/10 hover:border-white/20 transition">
+              <CardHeader>
+                <CardTitle className="text-lg">{p.title}</CardTitle>
+              </CardHeader>
+              <CardContent className="text-slate-300">
+                <div className="aspect-video rounded-xl bg-slate-800/60 grid place-items-center text-xs">Screenshot</div>
+                <p className="mt-3 text-sm">{p.description}</p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {p.tags.map((t) => (
+                    <Badge key={t} variant="secondary" className="rounded-full">{t}</Badge>
+                  ))}
+                </div>
+                <div className="mt-4 flex gap-3 text-sm">
+                  <a href={p.link} className="inline-flex items-center hover:underline"><ExternalLink className="h-4 w-4 mr-1"/>Live</a>
+                  <a href={p.repo} className="inline-flex items-center hover:underline"><Github className="h-4 w-4 mr-1"/>Code</a>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Experience */}
+      <section id="experience" className="mx-auto max-w-6xl px-4 py-12">
+        <h2 className="text-2xl font-semibold">Experience</h2>
+        <div className="mt-6 grid md:grid-cols-2 gap-6">
+          {experiences.map((e) => (
+            <Card key={e.company} className="rounded-3xl border-white/10">
+              <CardHeader>
+                <CardTitle className="text-lg">{e.role} — {e.company}</CardTitle>
+                <div className="text-sm text-slate-400">{e.period}</div>
+              </CardHeader>
+              <CardContent>
+                <ul className="list-disc pl-5 text-slate-300 text-sm space-y-2">
+                  {e.bullets.map((b, i) => <li key={i}>{b}</li>)}
+                </ul>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* Skills */}
+      <section id="skills" className="mx-auto max-w-6xl px-4 py-12">
+        <h2 className="text-2xl font-semibold">Skills</h2>
+        <div className="mt-4 flex flex-wrap gap-2">
+          {skills.map((s) => (
+            <Badge key={s} variant="outline" className="rounded-full">{s}</Badge>
+          ))}
+        </div>
+      </section>
+
+      {/* Contact */}
+      <section id="contact" className="mx-auto max-w-6xl px-4 py-12">
+        <h2 className="text-2xl font-semibold">Contact</h2>
+        <Card className="mt-4 rounded-3xl border-white/10">
+          <CardContent className="p-6">
+            <form action="mailto:you@example.com" method="post" encType="text/plain" className="grid md:grid-cols-2 gap-4">
+              <input className="w-full rounded-xl bg-slate-800/60 border border-white/10 px-4 py-3 outline-none" placeholder="Your name"/>
+              <input className="w-full rounded-xl bg-slate-800/60 border border-white/10 px-4 py-3 outline-none" placeholder="Email"/>
+              <textarea className="md:col-span-2 h-32 rounded-xl bg-slate-800/60 border border-white/10 px-4 py-3 outline-none" placeholder="Message"/>
+              <div className="md:col-span-2">
+                <Button type="submit" className="rounded-2xl">Send</Button>
+              </div>
+            </form>
+            <p className="mt-4 text-sm text-slate-400">Prefer email? you@example.com</p>
+          </CardContent>
+        </Card>
+      </section>
+
+      <footer className="border-t border-white/10">
+        <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-slate-400">
+          © {new Date().getFullYear()} Allen Garde — Built with Next.js, Tailwind, shadcn/ui, and Vercel
+        </div>
       </footer>
     </div>
   );

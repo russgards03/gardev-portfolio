@@ -18,6 +18,10 @@ const projects = [
     tags: ["PHP", "MySQL", "JavaScript", "Flutter"],
     link: "https://careshift.helioho.st",
     repo: "https://github.com/russgards03/Careshift",
+    images: [
+      "/projects/careshift1.jpg",
+      "/projects/careshift2.jpg",
+    ]
   },
   {
     title: "iReply HRIS",
@@ -59,6 +63,9 @@ const socials = [
 ];
 
 export default function PortfolioPage() {
+
+  const [currentImages, setCurrentImages] = React.useState<number[]>(projects.map(() => 0));
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900 text-slate-100">
       {/* Nav */}
@@ -103,7 +110,7 @@ export default function PortfolioPage() {
             </div>
             <div className="mt-6 flex items-center gap-4 text-slate-400">
               <div className="flex items-center gap-2"><MapPin className="h-4 w-4"/>Bacolod City, PH</div>
-              <div className="flex items-center gap-2"><Phone className="h-4 w-4"/>+63 ••• ••• ••••</div>
+              <div className="flex items-center gap-2"><Phone className="h-4 w-4"/>+63 991 677 6743</div>
             </div>
             <div className="mt-6 flex gap-3">
               {socials.map(({ name, href, icon: Icon }) => (
@@ -134,32 +141,77 @@ export default function PortfolioPage() {
       {/* Projects */}
       <section id="projects" className="mx-auto max-w-6xl px-4 py-12">
         <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-semibold flex items-center gap-2"><Briefcase className="h-5 w-5"/> Projects</h2>
+          <h2 className="text-2xl font-semibold flex items-center gap-2">
+            <Briefcase className="h-5 w-5"/> Projects
+          </h2>
           <a className="text-sm text-slate-300 hover:text-white" href="https://github.com/russgards03">See all ↗</a>
         </div>
+
         <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((p) => (
+          {projects.map((p, index) => (
             <Card key={p.title} className="rounded-3xl border-white/10 hover:border-white/20 transition">
               <CardHeader>
                 <CardTitle className="text-lg">{p.title}</CardTitle>
               </CardHeader>
-              <CardContent className="text-slate-300">
-                <div className="aspect-video rounded-xl bg-slate-800/60 grid place-items-center text-xs">Screenshot</div>
+
+              <CardContent className="text-slate-300 relative">
+                {/* Carousel Image */}
+                <img
+                  src={p.images?.[currentImages[index]]}
+                  alt={`${p.title} screenshot`}
+                  className="aspect-video w-full rounded-xl object-cover transition-all duration-300 ease-in-out"
+                />
+
+                {/* Left Arrow */}
+                {p.images && p.images.length > 1 && (
+                  <button
+                    className="absolute top-1/2 left-2 -translate-y-1/2 bg-black/50 text-white p-1 rounded-full hover:bg-black/70"
+                    onClick={() => {
+                      const newImages = [...currentImages];
+                      newImages[index] = currentImages[index] === 0 ? p.images.length - 1 : currentImages[index] - 1;
+                      setCurrentImages(newImages);
+                    }}
+                  >
+                    ←
+                  </button>
+                )}
+
+                {/* Right Arrow */}
+                {p.images && p.images.length > 1 && (
+                  <button
+                    className="absolute top-1/2 right-2 -translate-y-1/2 bg-black/50 text-white p-1 rounded-full hover:bg-black/70"
+                    onClick={() => {
+                      const newImages = [...currentImages];
+                      newImages[index] = currentImages[index] === p.images.length - 1 ? 0 : currentImages[index] + 1;
+                      setCurrentImages(newImages);
+                    }}
+                  >
+                    →
+                  </button>
+                )}
+
                 <p className="mt-3 text-sm text-black font-bold">{p.description}</p>
+
                 <div className="mt-3 flex flex-wrap gap-2">
                   {p.tags.map((t) => (
                     <Badge key={t} variant="secondary" className="rounded-full">{t}</Badge>
                   ))}
                 </div>
+
                 <div className="mt-4 flex gap-3 text-sm">
-                  <a href={p.link} className="inline-flex items-center hover:underline text-black"><ExternalLink className="h-4 w-4 mr-1"/>Live</a>
-                  <a href={p.repo} className="inline-flex items-center hover:underline text-black"><Github className="h-4 w-4 mr-1"/>Code</a>
+                  <a href={p.link} className="inline-flex items-center hover:underline text-black">
+                    <ExternalLink className="h-4 w-4 mr-1"/>Live
+                  </a>
+                  <a href={p.repo} className="inline-flex items-center hover:underline text-black">
+                    <Github className="h-4 w-4 mr-1"/>Code
+                  </a>
                 </div>
               </CardContent>
             </Card>
           ))}
         </div>
       </section>
+
 
       {/* Experience */}
       <section id="experience" className="mx-auto max-w-6xl px-4 py-12">
@@ -204,14 +256,14 @@ export default function PortfolioPage() {
                 <Button type="submit" className="rounded-2xl">Send</Button>
               </div>
             </form>
-            <p className="mt-4 text-sm text-slate-400">Prefer email? you@example.com</p>
+            <p className="mt-4 text-sm text-black">Or you can reach me here: garde.russ@gmail.com</p>
           </CardContent>
         </Card>
       </section>
 
       <footer className="border-t border-white/10">
         <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-slate-400">
-          © {new Date().getFullYear()} Russ Garde — Built with Vercel
+          © {new Date().getFullYear()} Russ Garde — All rights reserved.
         </div>
       </footer>
     </div>

@@ -15,24 +15,17 @@ const projects = [
   {
     title: "CareShift Scheduling System",
     description: "Web & mobile scheduling for regional hospital. Admin assigns weekly nurse shifts; prevents overlaps; leave requests; audit logs.",
-    tags: ["PHP", "MySQL", "FullCalendar", "Flutter"],
-    link: "#",
-    repo: "#",
+    tags: ["PHP", "MySQL", "JavaScript", "Flutter"],
+    link: "https://careshift.helioho.st",
+    repo: "https://github.com/russgards03/Careshift",
   },
   {
-    title: "PrestaShop Customizations",
-    description: "Modules and theme tweaks for e‑commerce storefronts.",
-    tags: ["PrestaShop", "PHP", "Twig"],
+    title: "iReply HRIS",
+    description: "Human Resource Information System for the company, allowing users to manage employees.",
+    tags: ["Laravel", "MySQL"],
     link: "#",
     repo: "#",
-  },
-  {
-    title: "React Components Library",
-    description: "Reusable UI components with Tailwind, shadcn/ui, and Storybook.",
-    tags: ["React", "Tailwind", "shadcn/ui"],
-    link: "#",
-    repo: "#",
-  },
+  }
 ];
 
 const skills = [
@@ -69,9 +62,9 @@ export default function PortfolioPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-950 to-slate-900 text-slate-100">
       {/* Nav */}
-      <header className="sticky top-0 z-40 backdrop-blur border-b border-white/10">
+      <header className="sticky top-0 z-40 backdrop-blur border-b border-white/10 rounded-b-lg">
         <div className="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
-          <a href="#top" className="font-semibold tracking-tight text-lg">Allen Garde</a>
+          <a href="#top" className="font-semibold tracking-tight text-lg">Russ Garde</a>
           <nav className="hidden md:flex items-center gap-6 text-sm text-slate-300">
             <a className="hover:text-white" href="#projects">Projects</a>
             <a className="hover:text-white" href="#experience">Experience</a>
@@ -104,7 +97,7 @@ export default function PortfolioPage() {
               <Button asChild className="rounded-2xl">
                 <a href="#projects"><ExternalLink className="h-4 w-4 mr-2"/>View Projects</a>
               </Button>
-              <Button variant="outline" asChild className="rounded-2xl">
+              <Button asChild className="rounded-2xl">
                 <a href="/resume.pdf"><Download className="h-4 w-4 mr-2"/>Download CV</a>
               </Button>
             </div>
@@ -142,7 +135,7 @@ export default function PortfolioPage() {
       <section id="projects" className="mx-auto max-w-6xl px-4 py-12">
         <div className="flex items-center justify-between">
           <h2 className="text-2xl font-semibold flex items-center gap-2"><Briefcase className="h-5 w-5"/> Projects</h2>
-          <a className="text-sm text-slate-300 hover:text-white" href="https://github.com/">See all ↗</a>
+          <a className="text-sm text-slate-300 hover:text-white" href="https://github.com/russgards03">See all ↗</a>
         </div>
         <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((p) => (
@@ -152,15 +145,15 @@ export default function PortfolioPage() {
               </CardHeader>
               <CardContent className="text-slate-300">
                 <div className="aspect-video rounded-xl bg-slate-800/60 grid place-items-center text-xs">Screenshot</div>
-                <p className="mt-3 text-sm">{p.description}</p>
+                <p className="mt-3 text-sm text-black font-bold">{p.description}</p>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {p.tags.map((t) => (
                     <Badge key={t} variant="secondary" className="rounded-full">{t}</Badge>
                   ))}
                 </div>
                 <div className="mt-4 flex gap-3 text-sm">
-                  <a href={p.link} className="inline-flex items-center hover:underline"><ExternalLink className="h-4 w-4 mr-1"/>Live</a>
-                  <a href={p.repo} className="inline-flex items-center hover:underline"><Github className="h-4 w-4 mr-1"/>Code</a>
+                  <a href={p.link} className="inline-flex items-center hover:underline text-black"><ExternalLink className="h-4 w-4 mr-1"/>Live</a>
+                  <a href={p.repo} className="inline-flex items-center hover:underline text-black"><Github className="h-4 w-4 mr-1"/>Code</a>
                 </div>
               </CardContent>
             </Card>
@@ -176,10 +169,10 @@ export default function PortfolioPage() {
             <Card key={e.company} className="rounded-3xl border-white/10">
               <CardHeader>
                 <CardTitle className="text-lg">{e.role} — {e.company}</CardTitle>
-                <div className="text-sm text-slate-400">{e.period}</div>
+                <div className="text-sm text-black">{e.period}</div>
               </CardHeader>
               <CardContent>
-                <ul className="list-disc pl-5 text-slate-300 text-sm space-y-2">
+                <ul className="list-disc pl-5 text-black text-sm space-y-2">
                   {e.bullets.map((b, i) => <li key={i}>{b}</li>)}
                 </ul>
               </CardContent>
@@ -191,9 +184,9 @@ export default function PortfolioPage() {
       {/* Skills */}
       <section id="skills" className="mx-auto max-w-6xl px-4 py-12">
         <h2 className="text-2xl font-semibold">Skills</h2>
-        <div className="mt-4 flex flex-wrap gap-2">
+        <div className="mt-4 flex text-white flex-wrap gap-2">
           {skills.map((s) => (
-            <Badge key={s} variant="outline" className="rounded-full">{s}</Badge>
+            <Badge key={s} variant="darkOutline" className="rounded-full">{s}</Badge>
           ))}
         </div>
       </section>
@@ -218,7 +211,7 @@ export default function PortfolioPage() {
 
       <footer className="border-t border-white/10">
         <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-slate-400">
-          © {new Date().getFullYear()} Allen Garde — Built with Next.js, Tailwind, shadcn/ui, and Vercel
+          © {new Date().getFullYear()} Russ Garde — Built with Vercel
         </div>
       </footer>
     </div>

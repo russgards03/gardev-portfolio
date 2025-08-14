@@ -91,13 +91,14 @@ export default function PortfolioPage() {
         <div className="grid md:grid-cols-2 gap-10 items-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <div className="inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1 text-xs text-slate-300">
-              <Code2 className="h-4 w-4"/> Full‑stack inclined to Front‑end
+              <Code2 className="h-4 w-4"/> Full‑stack Developer
             </div>
             <h1 className="mt-4 text-4xl md:text-5xl font-semibold leading-tight">
               I build clean, reliable web apps
             </h1>
             <p className="mt-4 text-slate-300 max-w-prose">
-              BSIT grad (Latin honors). Comfortable with PHP/Laravel + MySQL, and growing fast in React/Next.js. I enjoy turning real-world workflows—like hospital scheduling—into smooth, intuitive UIs.
+              BSIT graduate. Comfortable with PHP/Laravel + MySQL, and growing fast in JavaScript. I enjoy turning real-world workflows
+              (hospital scheduling, human resource information system) into scalable, up to date systems.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button asChild className="rounded-2xl">

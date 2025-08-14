@@ -53,9 +53,9 @@ const experiences = [
 ];
 
 const socials = [
-  { name: "GitHub", href: "https://github.com/", icon: Github },
-  { name: "LinkedIn", href: "https://linkedin.com/in/", icon: Linkedin },
-  { name: "Email", href: "mailto:you@example.com", icon: Mail },
+  { name: "GitHub", href: "https://github.com/russgards03", icon: Github },
+  { name: "LinkedIn", href: "https://linkedin.com/in/russ-garde", icon: Linkedin },
+  { name: "Email", href: "garde.russ@gmail.com", icon: Mail },
 ];
 
 export default function PortfolioPage() {
@@ -98,7 +98,7 @@ export default function PortfolioPage() {
                 <a href="#projects"><ExternalLink className="h-4 w-4 mr-2"/>View Projects</a>
               </Button>
               <Button asChild className="rounded-2xl">
-                <a href="/resume.pdf"><Download className="h-4 w-4 mr-2"/>Download CV</a>
+                <a href="/Garde_Resume.pdf"><Download className="h-4 w-4 mr-2"/>Download CV</a>
               </Button>
             </div>
             <div className="mt-6 flex items-center gap-4 text-slate-400">

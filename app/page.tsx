@@ -33,7 +33,7 @@ const projects = [
 ];
 
 const skills = [
-  "PHP", "Laravel", "JavaScript", "React", "Next.js", "MySQL", "TailwindCSS", "Git/GitHub", "FullCalendar", "Flutter"
+  "HTML", "CSS", "PHP", "JavaScript", "MySQL", "Flutter", "Laravel", "Git/GitHub"
 ];
 
 const experiences = [
@@ -120,7 +120,7 @@ export default function PortfolioPage() {
               ))}
             </div>
           </motion.div>
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}>
+          {/*<motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}>
             <div className="relative">
               <div className="absolute -inset-1 rounded-3xl bg-gradient-to-tr from-cyan-500/20 via-emerald-500/10 to-fuchsia-500/20 blur-2xl"/>
               <Card className="relative rounded-3xl border-white/10">
@@ -134,7 +134,7 @@ export default function PortfolioPage() {
                 </CardContent>
               </Card>
             </div>
-          </motion.div>
+          </motion.div>*/}
         </div>
       </section>
 
